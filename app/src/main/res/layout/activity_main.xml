@@ -25,12 +25,14 @@
         android:paddingBottom="16dp"
         android:text="@string/quantityAmount"
         android:textAllCaps="true"
+        android:textSize="16sp"
         android:textColor="@android:color/black" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/orderButton"
+        android:onClick="submitOrder"
         android:paddingBottom="16dp"/>
 
 </LinearLayout>

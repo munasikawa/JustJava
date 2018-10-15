@@ -3,6 +3,8 @@ package com.example.hashi.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -45,8 +47,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void submitOrder(View view) {
+
+        //This method checks if whipped cream is added
+
+        EditText userName = (EditText) findViewById(R.id.username_view);
+        String names = userName.getText().toString();
+
+
+        CheckBox whippedCreamCheckbox = (CheckBox) findViewById(R.id.whipped_cream_checkbox);
+        boolean hasWhippedCream = whippedCreamCheckbox.isChecked();
+
+        //This method checks if chocolate is added
+
+        CheckBox chocolateCheckbox = findViewById(R.id.chocolate_checkbox);
+        boolean hasChocolateCheckbox = chocolateCheckbox.isChecked();
+
         int price = calculatePrice();
-        String priceMessage = createOrderSummary(price);
+        String priceMessage = createOrderSummary(names, price, hasWhippedCream, hasChocolateCheckbox);
         displayMessage(priceMessage);
 
 
@@ -68,13 +85,17 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Creates full order summary.
      *
-     * @return priceMessage
+     * @return full priceMessage
      * @Param price of the order
+     * @Param whether user wants Whipped Cream
+     * @Param whether user wants Chocolate
      */
 
-    private String createOrderSummary(int price) {
+    private String createOrderSummary(String addNames, int price, boolean addWhippedCream, boolean addChocolateCheckbox) {
 
-        String priceMessage = "Name: Muna Sikawa";
+        String priceMessage = "Name: " + addNames;
+        priceMessage += "\nAdd Whipped Cream?: " + addWhippedCream;
+        priceMessage += "\nAdd Chocolate?: " + addChocolateCheckbox;
         priceMessage += "\nQuantity: " + quantity;
         priceMessage += "\nTotal: $" + price;
         priceMessage += "\nThank You!";
@@ -105,5 +126,6 @@ public class MainActivity extends AppCompatActivity {
         orderSummaryTextView.setText(message);
 
     }
+
 
 }
